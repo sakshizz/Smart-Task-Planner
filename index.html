@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎯 Smart Task Planner</h1>
+            <p>Break down your goals into actionable tasks with AI</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Goal Input Section -->
+            <section class="input-section card">
+                <h2>Create New Goal</h2>
+                <form id="goalForm">
+                    <div class="form-group">
+                        <label for="goalInput">What do you want to achieve?</label>
+                        <textarea 
+                            id="goalInput" 
+                            placeholder="e.g., Launch a product in 2 weeks, Learn Python programming, Plan a wedding..."
+                            rows="3"
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contextInput">Additional Context (optional)</label>
+                        <textarea 
+                            id="contextInput" 
+                            placeholder="Any specific requirements, constraints, or details..."
+                            rows="2"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deadlineInput">Timeline (days)</label>
+                        <input 
+                            type="number" 
+                            id="deadlineInput" 
+                            placeholder="14"
+                            min="1" 
+                            max="365"
+                        >
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="btn btn-primary">
+                        <span class="btn-text">Generate Task Plan</span>
+                        <span class="btn-loading" style="display: none;">
+                            <span class="spinner"></span> Generating...
+                        </span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section" style="display: none;">
+                <!-- AI Reasoning -->
+                <div id="reasoningCard" class="card reasoning-card">
+                    <h3>🤖 AI Analysis</h3>
+                    <p id="reasoningText"></p>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalTasks">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalHours">0</span>
+                        <span class="stat-label">Est. Hours</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="deadline">-</span>
+                        <span class="stat-label">Deadline</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="completion">0%</span>
+                        <span class="stat-label">Complete</span>
+                    </div>
+                </div>
+
+                <!-- Task List -->
+                <div class="card tasks-card">
+                    <div class="tasks-header">
+                        <h3>📋 Task Breakdown</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="in_progress">In Progress</button>
+                            <button class="filter-btn" data-filter="completed">Completed</button>
+                        </div>
+                    </div>
+                    <div id="taskList" class="task-list"></div>
+                </div>
+            </section>
+
+            <!-- Goals History -->
+            <section class="history-section card">
+                <h3>📚 Previous Goals</h3>
+                <div id="goalsHistory" class="goals-history">
+                    <p class="empty-state">No previous goals yet.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by AI • Built with FastAPI & OpenAI</p>
+        </footer>
+    </div>
+
+    <!-- Task Detail Modal -->
+    <div id="taskModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
