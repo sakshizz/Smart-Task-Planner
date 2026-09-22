@@ -37,19 +37,20 @@ An AI-powered task planning system that breaks down goals into actionable tasks 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/smart-task-planner.git
-cd smart-task-planner
+git clone https://github.com/sakshizz/Smart-Task-Planner.git
+cd Smart-Task-Planner
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# On Windows
+venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Set up environment variables
-cp .env.example .env
-# Edit .env and add your OpenRouter API key
+# Add your OpenRouter API key to the .env file
 
 # Run the application
 uvicorn backend.main:app --reload
